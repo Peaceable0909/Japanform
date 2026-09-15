@@ -216,6 +216,10 @@ function updateProgressNav() {
     el.classList.toggle("active", idx === currentStepIndex);
     el.classList.toggle("visited", idx < currentStepIndex);
   });
+  const summary = document.getElementById("mobileProgressSummary");
+  if (summary) {
+    summary.textContent = `Step ${currentStepIndex + 1} of ${STEPS.length}: ${STEPS[currentStepIndex].title}`;
+  }
 }
 
 /** Users may jump to any earlier step freely; jumping forward re-validates the current step first. */
