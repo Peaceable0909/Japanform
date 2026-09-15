@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>iCLA University Application</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,500;0,600;0,700;1,500&family=Source+Sans+3:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<datalist id="countryList" class="country-list"></datalist>
+
+<div class="app-shell">
+
+  <header class="topbar">
+    <div class="topbar-brand">
+      <span class="brand-mark" aria-hidden="true">iCLA</span>
+      <div>
+        <p class="brand-title">University Application</p>
+        <p class="brand-subtitle">International College of Liberal Arts</p>
+      </div>
+    </div>
+    <button type="button" id="clearFormBtn" class="btn btn-ghost">Clear Form</button>
+  </header>
+
+  <nav id="progressNavMobile" class="progress-mobile" aria-label="Application progress"></nav>
+
+  <div class="layout">
+    <nav id="progressNavDesktop" class="progress-desktop" aria-label="Application progress"></nav>
+
+    <main id="formContainer" class="form-container">
+      <form id="applicationForm" novalidate>
+
+        <!-- 1. PERSONAL INFORMATION -->
+        <section class="step-panel" data-step="personal" aria-labelledby="h-personal">
+          <h2 id="h-personal">Personal Information</h2>
+          <p class="notice">Please write your name exactly as shown in your passport.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="personGivenName">Given Name <span class="req">*</span></label>
+              <input type="text" id="personGivenName" required />
+            </div>
+            <div class="field">
+              <label for="personFamilyName">Family Name <span class="req">*</span></label>
+              <input type="text" id="personFamilyName" required />
+            </div>
+            <div class="field">
+              <label for="personGender">Gender <span class="req">*</span></label>
+              <select id="personGender" required>
+                <option value="">Select gender</option>
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
+                <option value="Prefer not to say">Prefer not to say</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="personCitizenship">Citizenship <span class="req">*</span></label>
+              <input type="text" id="personCitizenship" list="countryList" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- 2. PASSPORT -->
+        <section class="step-panel" data-step="passport" aria-labelledby="h-passport" hidden>
+          <h2 id="h-passport">Passport</h2>
+          <div class="field-grid">
+            <div class="field">
+              <label for="passportNumber">Passport Number <span class="req">*</span></label>
+              <input type="text" id="passportNumber" required />
+            </div>
+            <div class="field">
+              <label for="passportExpiry">Passport Expiry Date <span class="req">*</span></label>
+              <input type="date" id="passportExpiry" required />
+            </div>
+            <div class="field">
+              <label for="passportCountry">Country of Issue <span class="req">*</span></label>
+              <input type="text" id="passportCountry" list="countryList" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- 3. BIRTH DETAILS -->
+        <section class="step-panel" data-step="birth" aria-labelledby="h-birth" hidden>
+          <h2 id="h-birth">Birth Details</h2>
+          <div class="field-grid">
+            <div class="field">
+              <label for="birthDob">Date of Birth <span class="req">*</span></label>
+              <input type="date" id="birthDob" required />
+            </div>
+            <div class="field">
+              <label for="birthCity">City of Birth <span class="req">*</span></label>
+              <input type="text" id="birthCity" required />
+            </div>
+            <div class="field">
+              <label for="birthCountry">Country of Birth <span class="req">*</span></label>
+              <input type="text" id="birthCountry" list="countryList" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- 4. ADDRESS AND CONTACT -->
+        <section class="step-panel" data-step="address" aria-labelledby="h-address" hidden>
+          <h2 id="h-address">Address and Contact</h2>
+          <div class="field-grid">
+            <div class="field field-full">
+              <label for="addrStreet">Street Address <span class="req">*</span></label>
+              <input type="text" id="addrStreet" required />
+            </div>
+            <div class="field">
+              <label for="addrCity">City <span class="req">*</span></label>
+              <input type="text" id="addrCity" required />
+            </div>
+            <div class="field">
+              <label for="addrProvince">Province / Region</label>
+              <input type="text" id="addrProvince" />
+            </div>
+            <div class="field">
+              <label for="addrState">State</label>
+              <input type="text" id="addrState" />
+            </div>
+            <div class="field">
+              <label for="addrPostal">Postal Code <span class="req">*</span></label>
+              <input type="text" id="addrPostal" required />
+            </div>
+            <div class="field">
+              <label for="addrCountry">Country <span class="req">*</span></label>
+              <input type="text" id="addrCountry" list="countryList" required />
+            </div>
+            <div class="field field-full">
+              <label for="phoneMobile">Mobile Number <span class="req">*</span></label>
+              <input type="tel" id="phoneMobile" required />
+              <p class="field-help">Please include the country code, for example +234 801 234 5678.</p>
+            </div>
+          </div>
+        </section>
+
+        <!-- 5. EMERGENCY CONTACT -->
+        <section class="step-panel" data-step="emergencyContact" aria-labelledby="h-ec" hidden>
+          <h2 id="h-ec">Emergency Contact</h2>
+          <p class="notice">It is your responsibility to inform your emergency contact that their personal information will be stored and processed here.</p>
+          <div class="field-grid">
+            <div class="field">
+              <label for="ecFullName">Full Name <span class="req">*</span></label>
+              <input type="text" id="ecFullName" required />
+            </div>
+            <div class="field">
+              <label for="ecEmail">Email <span class="req">*</span></label>
+              <input type="email" id="ecEmail" required />
+            </div>
+            <div class="field">
+              <label for="ecTelephone">Telephone <span class="req">*</span></label>
+              <input type="tel" id="ecTelephone" required />
+            </div>
+            <div class="field">
+              <label for="ecRelationship">Relationship to Applicant <span class="req">*</span></label>
+              <select id="ecRelationship" required>
+                <option value="">Select relationship</option>
+                <option value="Parent">Parent</option>
+                <option value="Sibling">Sibling</option>
+                <option value="Spouse">Spouse</option>
+                <option value="Fiancé / Fiancée">Fiancé / Fiancée</option>
+                <option value="Friend">Friend</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+          </div>
+        </section>
+
+        <!-- 6. EMERGENCY CONTACT ADDRESS -->
+        <section class="step-panel" data-step="emergencyContactAddress" aria-labelledby="h-eca" hidden>
+          <h2 id="h-eca">Emergency Contact Address</h2>
+          <div class="field-grid">
+            <div class="field field-full">
+              <label for="ecaStreet">Street Address <span class="req">*</span></label>
+              <input type="text" id="ecaStreet" required />
+            </div>
+            <div class="field">
+              <label for="ecaCity">City <span class="req">*</span></label>
+              <input type="text" id="ecaCity" required />
+            </div>
+            <div class="field">
+              <label for="ecaProvince">Province / Region</label>
+              <input type="text" id="ecaProvince" />
+            </div>
+            <div class="field">
+              <label for="ecaPostal">Postal Code <span class="req">*</span></label>
+              <input type="text" id="ecaPostal" required />
+            </div>
+            <div class="field">
+              <label for="ecaCountry">Country <span class="req">*</span></label>
+              <input type="text" id="ecaCountry" list="countryList" required />
+            </div>
+          </div>
+        </section>
+
+        <!-- 7. EDUCATION HISTORY -->
+        <section class="step-panel" data-step="education" aria-labelledby="h-edu" hidden>
+          <h2 id="h-edu">Education History</h2>
+          <div id="educationList"></div>
+          <button type="button" id="addEducationBtn" class="btn btn-add">+ Add Education</button>
+        </section>
+
+        <!-- 8. HIGH SCHOOL DETAILS -->
+        <section class="step-panel" data-step="highSchool" aria-labelledby="h-hs" hidden>
+          <h2 id="h-hs">High School Details</h2>
+          <div class="field-grid">
+            <div class="field field-full">
+              <label for="hsName">High School Name <span class="req">*</span></label>
+              <input type="text" id="hsName" required />
+            </div>
+            <div class="field">
+              <label for="hsCity">City <span class="req">*</span></label>
+              <input type="text" id="hsCity" required />
+            </div>
+            <div class="field">
+              <label for="hsCountry">Country <span class="req">*</span></label>
+              <input type="text" id="hsCountry" list="countryList" required />
+            </div>
+            <div class="field">
+              <label for="hsFrom">Attendance From <span class="req">*</span></label>
+              <input type="month" id="hsFrom" required />
+            </div>
+            <div class="field">
+              <label for="hsTo">Attendance To <span class="req">*</span></label>
+              <input type="month" id="hsTo" required />
+            </div>
+            <div class="field">
+              <label for="hsDiploma">Type of Diploma / Graduation Certificate <span class="req">*</span></label>
+              <select id="hsDiploma" required>
+                <option value="">Select diploma type</option>
+                <option value="WAEC">WAEC</option>
+                <option value="NECO">NECO</option>
+                <option value="GCE">GCE</option>
+                <option value="IB">IB</option>
+                <option value="National High School Diploma">National High School Diploma</option>
+                <option value="Other">Other</option>
+              </select>
+            </div>
+            <div class="field" id="hsDiplomaOtherWrap" style="display:none;">
+              <label for="hsDiplomaOther">Please specify <span class="req">*</span></label>
+              <input type="text" id="hsDiplomaOther" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 9. STANDARDIZED TESTS -->
+        <section class="step-panel" data-step="tests" aria-labelledby="h-tests" hidden>
+          <h2 id="h-tests">Standardized Tests</h2>
+          <label class="checkbox-label" for="noTestTaken">
+            <input type="checkbox" id="noTestTaken" />
+            I have not taken a standardized test
+          </label>
+          <div id="testsList"></div>
+          <button type="button" id="addTestBtn" class="btn btn-add">+ Add Another Test</button>
+        </section>
+
+        <!-- 10. ENGLISH PROFICIENCY -->
+        <section class="step-panel" data-step="english" aria-labelledby="h-eng" hidden>
+          <h2 id="h-eng">English Proficiency</h2>
+          <label class="checkbox-label" for="engNative">
+            <input type="checkbox" id="engNative" />
+            Native English Speaker
+          </label>
+          <div id="englishFieldsWrap" class="field-grid">
+            <div class="field">
+              <label for="engTestName">Name of Test <span class="req">*</span></label>
+              <input type="text" id="engTestName" placeholder="e.g. IELTS, TOEFL, Duolingo" />
+            </div>
+            <div class="field">
+              <label for="engDate">Date of Test <span class="req">*</span></label>
+              <input type="date" id="engDate" />
+            </div>
+            <div class="field">
+              <label for="engCandidate">Candidate / Registration Number <span class="req">*</span></label>
+              <input type="text" id="engCandidate" />
+            </div>
+            <div class="field">
+              <label for="engCountry">Country of Test Location <span class="req">*</span></label>
+              <input type="text" id="engCountry" list="countryList" />
+            </div>
+            <div class="field">
+              <label for="engScore">Score <span class="req">*</span></label>
+              <input type="text" id="engScore" />
+            </div>
+          </div>
+        </section>
+
+        <!-- 11. EMPLOYMENT HISTORY -->
+        <section class="step-panel" data-step="employment" aria-labelledby="h-emp" hidden>
+          <h2 id="h-emp">Employment History</h2>
+          <p class="notice">Please describe your work-related experiences. Work experience includes military service, but not part-time jobs. If you haven't had any job experience, leave this section empty.</p>
+          <label class="checkbox-label" for="noEmployment">
+            <input type="checkbox" id="noEmployment" />
+            I have no employment experience
+          </label>
+          <div id="employmentList"></div>
+          <button type="button" id="addEmploymentBtn" class="btn btn-add">+ Add Another Employment</button>
+        </section>
+
+        <!-- 12. ACTIVITIES -->
+        <section class="step-panel" data-step="activities" aria-labelledby="h-act" hidden>
+          <h2 id="h-act">Activities</h2>
+          <p class="notice">Tell us about activities important to you outside the classroom &mdash; sports, clubs, volunteering, leadership, or hobbies.</p>
+          <div id="activitiesList"></div>
+          <button type="button" id="addActivityBtn" class="btn btn-add">+ Add Another Activity</button>
+        </section>
+
+        <!-- 13. ACADEMIC REFERENCES -->
+        <section class="step-panel" data-step="references" aria-labelledby="h-ref" hidden>
+          <h2 id="h-ref">Academic References</h2>
+          <p class="notice">Your referees should be current or former teachers who are able to evaluate your academic ability and complete an online questionnaire in English. Employers and colleagues are acceptable where no suitable academic referee is available.</p>
+          <p class="notice">The applicant is responsible for informing each referee that their personal information will be stored and processed.</p>
+          <p id="referencesCounter" class="counter-badge">References added: 0 / Minimum 2</p>
+          <div id="referencesList"></div>
+          <button type="button" id="addReferenceBtn" class="btn btn-add">+ Add Reference</button>
+        </section>
+
+        <!-- 14. STATEMENT OF PURPOSE -->
+        <section class="step-panel" data-step="statement" aria-labelledby="h-sop" hidden>
+          <h2 id="h-sop">Statement of Purpose</h2>
+          <p class="notice">Please write approximately 600 words in English. Your statement should address:</p>
+          <ol class="sop-points">
+            <li>Why you want to study at iCLA.</li>
+            <li>How your study at iCLA will help your life and career.</li>
+          </ol>
+          <div class="field field-full">
+            <label for="statementText">Statement of Purpose <span class="req">*</span></label>
+            <textarea id="statementText" rows="16" required></textarea>
+            <div class="sop-counters">
+              <span id="statementCharCount" class="char-counter">Characters: 0 / 8,000</span>
+              <span id="statementWordCount" class="char-counter">Words: 0</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- 15. REVIEW AND GENERATE PDF -->
+        <section class="step-panel" data-step="review" aria-labelledby="h-review" hidden>
+          <h2 id="h-review">Review and Generate PDF</h2>
+          <p class="notice">Please review every section carefully. Use "Edit" to return to a section and make changes.</p>
+          <div id="reviewContent"></div>
+
+          <div class="status-block">
+            <h3>Application Status</h3>
+            <ul id="statusChecklist" class="status-list"></ul>
+            <p id="statusBanner" class="status-banner"></p>
+          </div>
+
+          <div class="review-footer">
+            <button type="button" class="btn btn-secondary" data-action="back">Back</button>
+            <button type="button" id="generatePdfBtn" class="btn btn-generate" disabled>Generate PDF</button>
+          </div>
+        </section>
+
+        <div class="step-footer" id="commonStepFooter">
+          <button type="button" class="btn btn-secondary" data-action="back">Back</button>
+          <button type="button" class="btn btn-primary" data-action="next">Save &amp; Continue</button>
+        </div>
+
+      </form>
+    </main>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.2/jspdf.plugin.autotable.min.js"></script>
+<script src="js/countries.js"></script>
+<script src="js/formState.js"></script>
+<script src="js/validation.js"></script>
+<script src="js/education.js"></script>
+<script src="js/employment.js"></script>
+<script src="js/testsActivities.js"></script>
+<script src="js/references.js"></script>
+<script src="js/pdfGenerator.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
